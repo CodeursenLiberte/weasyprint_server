@@ -4,6 +4,20 @@
 
 Convertir des documents html en pdf.
 
+## Production
+
+1. Télécharger le paquet `.deb` depuis la page Releases.
+2. Installer le paquet :
+
+    ```shell
+    dpkg -i tmp/weasyprint_server_2026-01-15-14-18+c744464_amd64.deb
+    ```
+3. Lancer le serveur :
+
+    ```shell
+    BASE_URL=http://127.0.0.1:4000 UWSGI_HTTP_SOCKET=0.0.0.0:8000 UWSGI_STATS=0.0.0.0:9191 UWSGI_PROCESSES=4 UWSGI_ENABLE_THREADS=true UWSGI_MODULE=wsgi:app UWSGI_CHDIR=/opt/weasyprint/app /opt/weasyprint/app/.venv/bin/uwsgi
+    ```
+
 ## Développement
 ### installation
 
@@ -50,4 +64,6 @@ uv run ruff format --check && uv run ruff check
 
 ## Packaging
 
-voir package_scripts/main.sh
+- Builder un paquet .deb: `cd package_scripts && build.sh`
+- Lancer le serveur dans un conteneur Docker : `cd package_scripts && run.sh`
+- Les deux d'un coup: `cd package.sh && main.sh`
