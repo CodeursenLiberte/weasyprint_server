@@ -6,7 +6,7 @@ Convertir des documents html en pdf.
 
 ## Production
 
-1. Télécharger le paquet `.deb` depuis la page Releases.
+1. Télécharger le paquet `.deb` depuis la page [Releases](https://github.com/CodeursenLiberte/weasyprint_server/releases).
 2. Installer le paquet :
 
     ```shell
@@ -17,6 +17,17 @@ Convertir des documents html en pdf.
     ```shell
     BASE_URL=http://127.0.0.1:4000 UWSGI_HTTP_SOCKET=0.0.0.0:8000 UWSGI_STATS=0.0.0.0:9191 UWSGI_PROCESSES=4 UWSGI_ENABLE_THREADS=true UWSGI_MODULE=wsgi:app UWSGI_CHDIR=/opt/weasyprint/app /opt/weasyprint/app/.venv/bin/uwsgi
     ```
+
+## Configuration
+
+La configuration se fait par variables d'environnement.
+
+- `BASE_URL`: URL vers le chemin de base des assets (css, images, etc).
+- `UWSGI_HTTP_SOCKET`: l'IP et le port sur lequel binder le serveur.
+- `UWSGI_PROCESSES`: nombre de processus par instance du serveur (valeur conseillée : `4`).
+- `UWSGI_MODULE`: module WSGI racine à charger (valeur conseillée : `wsgi:app`).
+- `UWSGI_ENABLE_THREADS`: active l'utilisation des threads (valeur conseillée : `true`)
+- `SENTRY_DSN` (optionnel): identifiant Sentry pour la remontée des exceptions applicatives.
 
 ## Développement
 ### installation
